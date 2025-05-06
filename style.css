@@ -135,8 +135,71 @@ body {
   font-weight: bold;
   color: #04b8ef;
 }
+
+
+button{
+  text-shadow: 4px 4px 4px #687cf1;
+  font-weight: bold;
+  color: #04b8ef;
+}
 footer{
   font-weight: bold;
   color: #ffffff;
   text-shadow: 4px 4px 4px #687cf1;
+}
+
+.edit_temps{
+  font-weight: bold;
+  font-size: large;
+  color: #ffffff;
+  text-shadow: 4px 4px 4px #687cf1;
+  position: absolute;
+  right: 0;
+}
+
+.form {
+
+}
+
+.form-title {
+  font-size: 1.25rem;
+
+  font-weight: 600;
+  text-align: center;
+  color: #04b8ef;
+  text-shadow: 4px 4px 4px #687cf1;
+}
+
+.input-container {
+  text-align: center;
+}
+
+.input-container input, .form button {
+
+}
+
+.input-container input {
+
+}
+
+.submit {
+
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.signup-link {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.signup-link a {
+  text-decoration: underline;
+}
+
+.editing_temps{
+  text-align: center;
+  font-size: larger;
+  font-weight: bolder;
 }

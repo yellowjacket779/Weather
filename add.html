@@ -24,13 +24,12 @@
     </script>
   </label>
   <label class ="edit_temps">
-    <button id="redirectButton">Edit temps</button>
+    <button id="edit_temps">Edit temps</button>
       <script>
         document.getElementById('edit_temps').onclick = function() {
             window.location.href = "add.html";
         }
       </script>
-</label>
   </label>
   </center>
 </label>
@@ -48,20 +47,25 @@
       <div><a href="help.html">Help</a></div>
 </aside>
 
-<aside class = "help">
-  <h3> I hope it was not to hard to get here, but
-    here is a quick tips to get you started on
-    Light weather.</h3>
-  <ul>
-   <p>● No you do not need account else you want your setting on multiple devices</p>
-   <p>● Edit temps hold both the add and delete functions.So don't worry if you added/deleted the wrong city.</p>
-   <p>● The add an remove option are on the same page. To add a city please go to edit temps and look up your city or use your zip code.</p>
-   <p>● To remove a city click on edit temps and the remove button. This will take 
-   <p>you to the page that you can< delete the city you don't want anymore.</p>
-   <p>● Click on home to reload the cite</p>
-</ul>
-</aside>
+
+
 </main>
+<center>
+<div class="editing_temps">
+    <button id="addbutton">add</button>
+      <script>
+        document.getElementById('addbutton').onclick = function() {
+            window.location.href = "add.html";
+        }
+      </script>
+
+    <button id="remove">Remove</button>
+      <script>
+        document.getElementById('remove').onclick = function() {
+            window.location.href = "remove.html";
+        }
+      </script>
+      </center>
 <footer>
   <center>
   <p>A weather app with only
@@ -70,9 +74,9 @@
   </p>
   <p> Click the ≡  to see available options</p>
   <p> Go slow the website is not super fast</p>
-
   <p>Admin contact information:bennjack@oregonstate.edu</p>
 </footer>
 </body>
 
 </html>
+

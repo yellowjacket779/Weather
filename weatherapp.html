@@ -1,5 +1,3 @@
-<!-- From Uiverse.io by Cevorob --> 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,32 +9,57 @@
 
 <!-- The video -->
 <video autoplay muted loop id="background-video">
-  <source src="cloud.mp4" type="video/mp4">
+  <source src="clouds.mov" type="video/mp4">
 </video>
 <body>
   <label class="title" for="title">
   <center>
-  <h1>Simple Weather</h1>
+  <h1>Light Weather</h1>
+  <label class ="login">
+    <button id="login">Login</button>
+    <script>
+      document.getElementById('login').onclick = function() {
+          window.location.href = "login.html";
+      }
+    </script>
+  </label>
+  <label class ="edit_temps">
+    <button id="edit_temps">Edit temps</button>
+      <script>
+        document.getElementById('edit_temps').onclick = function() {
+            window.location.href = "add.html";
+        }
+      </script>
+</label>
   </center>
 </label>
 <main>
+
   <label class ="hamburger-menu">
     <input type="checkbox">
   </label>
-  </nav>
+</label>
   <aside class = "sidebar">
   <nav> 
     <!-- TODO: show active tabs and write the admin contact page. Also look into guide and weather conditions -->
     <div><a href="weatherapp.html"> Home</a></div>
     <div><a href="about.html"> About</a></div>
     <div><a href="help.html">Help</a></div>
-    <div>the</div>
-    <div>sidebar</div>
   </nav>
 </aside>
+<nav>
+</nav>
 </main>
 <footer>
-  <p>bigbytes@food.com | #wehavethefood | Copyright: 2028 | Created By: Jackson Bennett </p>
+  <center>
+  <p>A weather app with only
+      the essentials and none
+      of the annoying stuff
+  </p>
+  <p> Click the ≡  to see available options</p>
+  <p> Go slow the website is not super fast</p>
+
+  <p>Admin contact information:bennjack@oregonstate.edu</p>
 </footer>
 </body>
 </html>
