@@ -1,5 +1,4 @@
-
-
+/* TODO: edit this */
 #background-video {
   width: 100vw;
   height: 100vh;
@@ -13,12 +12,14 @@
 }
 
 .title {
+  position: absolute;
+  top: 20px; /* distance from the top */
+  left: 50%;
   text-shadow: 4px 4px 4px #687cf1;
   font-size: 1em;
   font-weight: bold;
   color: #04b8ef;
 }
-
 
 *,
 *::after,
@@ -112,43 +113,41 @@ body {
   max-width: 10rem;
   min-height: 10vh;
   text-shadow: 4px 4px 4px #687cf1;
-  
+
   font-size: 1em;
   font-weight: bold;
   color: var(--foreground);
-
 }
 
 .hamburger-menu:has(input:checked) + .sidebar {
   translate: 0;
 }
 
-.about_paragraph{
+.about_paragraph {
   text-align: center;
   text-shadow: 4px 4px 4px #687cf1;
   font-weight: bold;
   color: #04b8ef;
 }
-.help{
+.help {
   text-align: center;
   text-shadow: 4px 4px 4px #687cf1;
   font-weight: bold;
   color: #04b8ef;
 }
 
-
-button{
+button {
   text-shadow: 4px 4px 4px #687cf1;
   font-weight: bold;
   color: #04b8ef;
 }
-footer{
+footer {
   font-weight: bold;
   color: #ffffff;
   text-shadow: 4px 4px 4px #687cf1;
 }
 
-.edit_temps{
+.edit_temps {
   font-weight: bold;
   font-size: large;
   color: #ffffff;
@@ -157,49 +156,19 @@ footer{
   right: 0;
 }
 
-.form {
-
-}
-
-.form-title {
-  font-size: 1.25rem;
-
-  font-weight: 600;
-  text-align: center;
-  color: #04b8ef;
-  text-shadow: 4px 4px 4px #687cf1;
-}
-
-.input-container {
-  text-align: center;
-}
-
-.input-container input, .form button {
-
-}
-
-.input-container input {
-
-}
-
-.submit {
-
-  width: 100%;
-  text-transform: uppercase;
-}
-
-.signup-link {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  text-align: center;
-}
-
-.signup-link a {
-  text-decoration: underline;
-}
-
-.editing_temps{
+.editing_temps {
   text-align: center;
   font-size: larger;
   font-weight: bolder;
+}
+
+.city1-temp {
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 4px 4px 4px #687cf1;
+}
+.city1-name {
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 4px 4px 4px #687cf1;
 }

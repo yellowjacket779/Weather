@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="weather.css">
+    <script src="jsstuff.js"></script>
 </head>
 
 <!-- The video -->
@@ -46,8 +48,7 @@
       <div><a href="about.html"> About</a></div>
       <div><a href="help.html">Help</a></div>
 </aside>
-
-
+</main>
 
 </main>
 <center>
@@ -65,7 +66,94 @@
             window.location.href = "remove.html";
         }
       </script>
+      <div class="weather-input">
+        <input type="text" name="city" id="city_input" placeholder="Enter city name">
+        <button type="button" id="searchBtn">
+        <i class="fa-regular fa-search"></i> Search
+        </button>
+
+        </div>
       </center>
+      <center>
+        <section id="weather-input">
+          <p>
+             Location 1:
+             <label for="city1">City:</label>
+             <input type="text" id="city1">
+             <span class="error-msg hidden" id="error-value-city1">Enter a city</span>
+          <label for="stateDD1">State:</label>
+             <select id="stateDD1" name="states1"></select>
+          
+          </p>
+       
+          <p> 
+             <input type="radio" id="fahrenheit" name="units" checked value="fahrenheit">
+             <label for="fahren">Fahrenheit</label>
+             <input type="radio" id="celsius" name="units" value="celsius">
+             <label for="cel">Celsius</label><br>
+          </p>
+          <p>
+             <button class ="btn2" id="compareBtn">Compare</button>
+          </p>
+        </section>
+        <section id="forecast" class="hidden">
+          <h2>5 Day Forecast</h2>
+        
+          <p id="loading-city1">Loading...</p>
+          <p id="error-loading-city1" class="error-msg"></p>
+
+
+          <div id="forecastResults" class="forecast-grid">
+            <!-- Dynamic results will be added here -->
+          </div>
+
+          <table id="results-city1">
+             <caption id="city1-name" class = "title"></caption>
+             <tr>
+                <th id="city1-name"></th>
+                <td id="city1-temp"></td>
+                <td id="city1-day2-name"></td>
+                <td id="city1-day3-name"></td>
+                <td id="city1-day4-name"></td>
+                <td id="city1-day5-name"></td>
+             </tr>
+             <tr>
+                <th>High</th>
+                <td id="city1-day1-high"></td>
+                <td id="city1-day2-high"></td>
+                <td id="city1-day3-high"></td>
+                <td id="city1-day4-high"></td>
+                <td id="city1-day5-high"></td>
+             </tr>
+             <tr>
+                <th>Low</th>
+                <td id="city1-day1-low"></td>
+                <td id="city1-day2-low"></td>
+                <td id="city1-day3-low"></td>
+                <td id="city1-day4-low"></td>
+                <td id="city1-day5-low"></td>
+             </tr>
+             <tr>
+                <th>Rain</th>
+                <td id="city1-day1-precip"></td>
+                <td id="city1-day2-precip"></td>
+                <td id="city1-day3-precip"></td>
+                <td id="city1-day4-precip"></td>
+                <td id="city1-day5-precip"></td>
+             </tr>
+             <tr>
+                <th>Outlook</th>
+                <td><img id="city1-day1-image"></td>
+                <td><img id="city1-day2-image"></td>
+                <td><img id="city1-day3-image"></td>
+                <td><img id="city1-day4-image"></td>
+                <td><img id="city1-day5-image"></td>
+             </tr>
+            </label>
+          </table>
+
+        </section>
+        </center>
 <footer>
   <center>
   <p>A weather app with only

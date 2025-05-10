@@ -1,0 +1,344 @@
+.hidden {
+  display: none;
+}
+
+.error-msg {
+  color: red;
+}
+
+table {
+  margin-bottom: 15px;
+}
+
+table caption {
+  font-weight: bold;
+}
+
+table td {
+  text-align: center;
+  padding: 3px 8px;
+}
+
+header {
+  height: 60px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding: 5px 5px 5px 20px;
+}
+header > h1 {
+  color: #04b8ef;
+  font-size: 30px;
+}
+header > img {
+  float: left;
+  margin: 0 0 10px 10px;
+}
+
+header em {
+  font-size: 0.75em;
+}
+
+html {
+  font-family: Helvetica;
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 22px;
+}
+main {
+  overflow: auto;
+  margin: auto;
+  margin: 10px 10px 10px 10px;
+
+  padding: 10px 10px 10px 10px;
+}
+
+.button {
+  width: 600px;
+  height: 120px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.selector {
+  float: left;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  opacity: 0.6;
+}
+
+.selector:hover {
+  opacity: 1;
+}
+
+#results {
+  width: 300px;
+  height: 180px;
+  margin: auto;
+}
+
+#results div {
+  float: left;
+  height: 100px;
+  width: 120px;
+  margin: 10px 15px;
+  text-align: center;
+}
+
+#results img {
+  margin: 10px;
+}
+
+#prompt {
+  text-align: center;
+  font-size: 35px;
+}
+
+#imgwrapper {
+  display: block;
+  width: 600px;
+  height: 400px;
+  margin: 40px auto;
+  overflow: hidden;
+}
+
+#imgbox {
+  display: block;
+  margin: auto;
+}
+.clearfix {
+  overflow: auto;
+}
+
+em {
+  font-family: "Times New Roman", Georgia, Serif;
+}
+
+#fspan {
+  float: right;
+  font-family: verdana;
+  font-size: 12px;
+  color: #04b8ef;
+}
+.container1 {
+  margin-left: 20px;
+  font-size: 0.75em;
+}
+legend {
+  padding: 1px 8px;
+  border: 2px solid #e0d8b7;
+  border-radius: 6px / 12px;
+  box-shadow: none;
+  background: #a30101;
+  font-size: 14px;
+  color: #04b8ef;
+}
+form {
+  display: block;
+  margin-top: 0em;
+}
+fieldset label {
+  float: left;
+  clear: left;
+  padding-top: 2px;
+  width: 120px;
+  text-align: right;
+  font-size: 90%;
+  color: #f72727;
+}
+fieldset input,
+fieldset textarea,
+fieldset select {
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background: #fff;
+  line-height: 1.1;
+  font-family: inherit;
+  font-size: 1.1em;
+}
+fieldset span {
+  display: block;
+  margin: 0 0 0 120px;
+  padding: 0 0 4px 4px;
+}
+fieldset input[type="submit"],
+fieldset input[type="reset"],
+fieldset input[type="button"] {
+  padding: 2px 6px;
+  border: #b5bbc4 1px solid;
+  background: #f7fafc;
+  background-image: -webkit-linear-gradient(top, #fff, #dae6f1);
+  background-image: -moz-linear-gradient(top, #fff, #dae6f1);
+  background-image: -ms-linear-gradient(top, #fff, #dae6f1);
+  background-image: linear-gradient(to bottom, #fff, #dae6f1);
+  font-size: 100%;
+  color: #fc1313;
+}
+#passformat {
+  float: right;
+  width: 50%;
+  font-size: 0.8em;
+}
+
+table,
+th {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 5px;
+}
+
+table,
+td {
+  border: 1px solid #333;
+  border-collapse: collapse;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+}
+
+th {
+  text-align: center;
+}
+
+table tr:nth-child(even) {
+  background-color: #b3bdd0;
+}
+
+table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+table th {
+  background-color: #333f5f;
+  border-color: rgb(237, 238, 240);
+  color: rgb(237, 238, 240);
+  border: 1px solid rgb(237, 238, 240);
+}
+
+tr:hover {
+  background-color: orange;
+  color: orange;
+}
+caption {
+  font-weight: bold;
+  padding: 0.5em 0 0.5em 0;
+  text-align: center;
+}
+.btn2 {
+  -webkit-border-radius: 2;
+  -moz-border-radius: 2;
+  border-radius: 2px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  background: rgb(42, 75, 106);
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+}
+
+.btn2:hover {
+  background: orange;
+  text-decoration: none;
+}
+
+.btn1 {
+  -webkit-border-radius: 2;
+  -moz-border-radius: 2;
+  border-radius: 2px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  background: #438181;
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+}
+
+.btn1:hover {
+  background: orange;
+  text-decoration: none;
+}
+
+.myB {
+  -webkit-border-radius: 2;
+  -moz-border-radius: 2;
+  border-radius: 2px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  background: #438181;
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+}
+
+.myB:hover {
+  background: orange;
+  text-decoration: none;
+}
+
+select input {
+  width: 150px;
+  font-size: 14px;
+  padding: 3px;
+  margin: 5px;
+}
+option:checked ~ .checkmark {
+  background: orange;
+  color: white;
+}
+
+radio input:checked {
+  background: orange;
+  color: white;
+}
+/* Radio element, when checked */
+input[type="radio"]:checked {
+  box-shadow: 0 0 0 3px orange;
+  background: orange;
+  color: white;
+}
+
+header > img {
+  float: left;
+  margin: 0 0 10px 10px;
+}
+
+header em {
+  font-size: 0.75em;
+}
+/* center everything else */
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+}
+
+/* Center the #forecastDetails */
+#forecastDetails {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+}
