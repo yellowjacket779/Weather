@@ -1,7 +1,7 @@
 //  Hello World server
 //  Binds REP socket to tcp://*:5555
 //  Expects "Hello" from client, replies with "World"
-
+require('dotenv').config()
 const zmq = require("zeromq");
 
 async function runServer() {
@@ -39,7 +39,7 @@ async function getWeatherForecast(myCity, myState, sock) {
     "https://geocode.maps.co/search?q=" +
     city +
     "/+" +
-    state +
+    state + "&api_key="+
     key;
   const responseLoc = await fetch(url_location);
   if (responseLoc.ok) {
