@@ -172,3 +172,8 @@ footer {
   color: #ffffff;
   text-shadow: 4px 4px 4px #687cf1;
 }
+.results{
+  display:flex;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}

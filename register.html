@@ -1,0 +1,118 @@
+<!-- From Uiverse.io by Cevorob -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="loginpage.css">
+
+</head>
+
+<!-- The video -->
+<video autoplay muted loop id="background-video">
+  <source src="clouds.mov" type="video/mp4">
+</video>
+
+
+  <header>
+    <nav class="navigation">
+  <label class="title" for="title">
+      <h1>Light Weather</h1>
+      <label class="login">
+      
+        <button id="login" class="btnLogin-popup">Login</button>
+      
+        <script>
+          document.getElementById('login').onclick = function () {
+            window.location.href = "login.html";
+          }
+        </script>
+      </label>
+    </label>
+      <label class="edit_temps">
+        <button id="edit_temps">Edit temps</button>
+        <script>
+          document.getElementById('edit_temps').onclick = function () {
+            window.location.href = "add.html";
+          }
+        </script>
+      </label>
+  </label>
+ 
+  <main>
+    <label class="hamburger-menu">
+      <input type="checkbox">
+    </label>
+    <aside class="sidebar">
+      <nav>
+        <!-- TODO: show active tabs and write the admin contact page. Also look into guide and weather conditions -->
+        <div><a href="weatherapp.html"> Home</a></div>
+        <div><a href="about.html"> About</a></div>
+        <div><a href="help.html">Help</a></div>
+      </nav>
+    </aside>
+  </header>
+  </main>
+  <body>
+    <label class="loginpage">
+  <div class ="form-box register">
+        <h2>Registration</h2>
+        <form action="#">
+            <div class="input-box">
+              <span class="icon">
+              <ion-icon name="person-circle-outline"></ion-icon>
+              </span>
+              <input type="text" required>
+              <label>Username</label>
+            </div>
+            <div class="input-box">
+              <span class="icon">
+              <ion-icon name="mail-sharp"></ion-icon>
+              </span>
+              <input type="email" required>
+              <label>Email</label>
+            </div>
+            <div class="input-box">
+              <span class="icon">
+              <ion-icon name="lock-closed-sharp"></ion-icon>
+              </span>
+              <input type="password" required>
+              <label>Password</label>
+            </div>
+              <div class="remember-forgot">
+                <label><input type="checkbox">Remember Me</label>
+                <a href="#">Forgot Password?</a>
+              </div>
+              <button type="submit" class="btn">Login</button>
+              <div class="login-register">
+                <p> No account?
+                <a href="#" class="register-link">Sign up</a></a></p>
+              </div>
+        </form>
+      </div>
+  </div>
+  </label>
+</body>
+    <p>want to go back? go to the three lines and click this <a href="weatherapp.html"> Home</a></p>
+    </main>
+    <footer>
+      <p>A weather app with only
+        the essentials and none
+        of the annoying stuff
+      </p>
+      <p> Click the ≡ to see available options</p>
+      <p> Go slow the website is not super fast</p>
+
+      <p>Admin contact information:bennjack@oregonstate.edu</p>
+    </footer>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
