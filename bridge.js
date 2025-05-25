@@ -27,16 +27,15 @@ wss.on("connection", (ws) => {
       const message = `${city},${state}`;
       await zmqSock1.send(message);
       console.log("Sent to ZMQ:", message);
-      let send_to_file = message +"\n"
-    fs.appendFile('/Users/jackb/OneDrive/Coding_projects/cs361a5/output.txt', send_to_file, err =>{
-        if (err)
-        console.error(err);
-    });
+      let send_to_file = message + "\n";
+      fs.appendFile("output.txt", send_to_file, (err) => {
+        if (err) console.error(err);
+      });
       // Wait for ZMQ reply
       const [msg2] = await zmqSock1.receive();
       console.log(msg2.toString());
       const messageStr = msg2.toString(); // Convert from Buffer to string
-     console.log("Received message:", messageStr);
+      console.log("Received message:", messageStr);
 
       const [lat, long] = messageStr.split(",");
       const message2 = lat + "," + long;
@@ -49,7 +48,6 @@ wss.on("connection", (ws) => {
 
       // Send result back to browser
       ws.send(reply2.toString());
-
     } catch (err) {
       console.error("Error:", err);
       ws.send("Error processing request.");

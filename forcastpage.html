@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="weather.css">
-    <script src="js/client.js"></script>
-    <py-script src="michealservice.py"></py-script>
-
-
+    <link rel="stylesheet" href="weathermap.css">
+    <script src="js/client2.js"></script>
 </head>
 
 <!-- The video -->
@@ -52,6 +49,57 @@
       <div><a href="help.html">Help</a></div>
 </aside>
 </main>
+<body>
+    <section id="forecast" class="hidden">
+         <h2>5 Day Forecast</h2>
+
+         <p id="loading-city1">Loading...</p>
+         <p id="error-loading-city1" class="error-msg"></p>
+         <table id="results-city1">
+            <caption id="city1-name"></caption>
+            <tr>
+               <th>Day</th>
+               <td id="city1-day1-name"></td>
+               <td id="city1-day2-name"></td>
+               <td id="city1-day3-name"></td>
+               <td id="city1-day4-name"></td>
+               <td id="city1-day5-name"></td>
+            </tr>
+            <tr>
+               <th>High</th>
+               <td id="city1-day1-high"></td>
+               <td id="city1-day2-high"></td>
+               <td id="city1-day3-high"></td>
+               <td id="city1-day4-high"></td>
+               <td id="city1-day5-high"></td>
+            </tr>
+            <tr>
+               <th>Low</th>
+               <td id="city1-day1-low"></td>
+               <td id="city1-day2-low"></td>
+               <td id="city1-day3-low"></td>
+               <td id="city1-day4-low"></td>
+               <td id="city1-day5-low"></td>
+            </tr>
+            <tr>
+               <th>Rain</th>
+               <td id="city1-day1-precip"></td>
+               <td id="city1-day2-precip"></td>
+               <td id="city1-day3-precip"></td>
+               <td id="city1-day4-precip"></td>
+               <td id="city1-day5-precip"></td>
+            </tr>
+            <tr>
+               <th>Outlook</th>
+               <td><img id="city1-day1-image"></td>
+               <td><img id="city1-day2-image"></td>
+               <td><img id="city1-day3-image"></td>
+               <td><img id="city1-day4-image"></td>
+               <td><img id="city1-day5-image"></td>
+            </tr>
+            
+         </table>
+</body>
 
 </main>
 <center>
