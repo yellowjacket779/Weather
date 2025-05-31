@@ -1,6 +1,9 @@
 const WebSocket = require("ws");
 const zmq = require("zeromq");
 const fs = require("fs");
+
+
+let outfile = 'output.json';
 // Create WebSocket server (for browser)
 const wss = new WebSocket.Server({ port: 5556 }, () => {
   console.log("WebSocket server is listening on ws://localhost:5556");
@@ -21,16 +24,15 @@ wss.on("connection", (ws) => {
       console.log("Received from browser:", msg.toString());
 
       // Expecting city and state as JSON string, e.g. '{"city":"Dallas","state":"TX"}'
-      let { city, state } = JSON.parse(msg.toString());
-
+      let { city: cityname, state: statename } = JSON.parse(msg.toString());
+      await send_data(cityname, statename);
+      //TODO: figure out how to make the city and state into a object
       // Send to ZMQ server as "city,state"
-      const message = `${city},${state}`;
+      const message = `${cityname},${statename}`;
+
       await zmqSock1.send(message);
       console.log("Sent to ZMQ:", message);
-      let send_to_file = message + "\n";
-      fs.appendFile("output.txt", send_to_file, (err) => {
-        if (err) console.error(err);
-      });
+
       // Wait for ZMQ reply
       const [msg2] = await zmqSock1.receive();
       console.log(msg2.toString());
@@ -58,3 +60,36 @@ wss.on("connection", (ws) => {
     console.log("Browser disconnected");
   });
 });
+
+
+function send_data(cityname, statename) {
+
+
+  let newcityobject = { city: cityname, state: statename };
+
+
+fs.readFile(outfile, "utf8", (err, data) => {
+    let citydata = [];
+
+    if (!err && data) {
+      try {
+        citydata = JSON.parse(data);
+      } catch (parseErr) {
+        console.error("Error parsing existing reviews:", parseErr);
+      }
+    }
+
+    citydata.push(newcityobject);
+    
+
+    fs.writeFile(outfile, JSON.stringify(citydata, null, 2), (writeErr) => {
+      if (writeErr) {
+        console.error("Error writing to reviews.json:", writeErr);
+      }
+
+    console.log("got it to work\n")
+    });
+  });
+
+
+}

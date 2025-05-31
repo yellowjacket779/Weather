@@ -17,6 +17,7 @@ async function runClient() {
     try {
       const data = event.data;
 
+      //   const cityInfo = data.split(",");
       console.log(data);
       const msg = JSON.parse(event.data);
       let longitude = msg.longitude.toString();
@@ -26,13 +27,6 @@ async function runClient() {
     } catch (error) {
       console.error("Error parsing JSON:", error);
     }
-    // else{
-    //     cityandstate =  event.data.toString();
-    //     let [city, state] = cityandstate.split(",")
-    //     cityandstate = city +"  " + state;
-    //        showMessage("city1" + "-name", cityandstate);
-
-    // }
   };
 }
 
@@ -81,6 +75,15 @@ function getSummaryForecast(forecastList) {
   let weatherCode = forecastList.weather_code;
   console.log("Codes : ", weatherCode);
   let timeDate = forecastList.time;
+
+
+
+
+
+
+
+
+  
   console.log("Dates : ", timeDate);
   let precip = forecastList.precipitation_probability_max;
   console.log("Dates : ", precip);
