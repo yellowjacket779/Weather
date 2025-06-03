@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="icons.css">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="weather.css">
-    <script src="jsstuff.js"></script>
+    <script src="js/homepage.js" defer></script>
 </head>
 
 <!-- The video -->
@@ -52,26 +54,8 @@
 <nav>
 </nav>
 </main>
-<div id="savedForecastDisplay">
-  <h2>Last Saved Forecast</h2>
-  <div id="forecastDetails"></div>
-</div>
-<button id="clearForecastBtn">Clear Forecast</button>
-<script> 
-//TODO: understand this better
+<div id="weatherCardsContainer"></div>
 
-  window.addEventListener("DOMContentLoaded", () => {
-    const saved = localStorage.getItem("savedForecast");
-    if (saved) {
-      const forecast = JSON.parse(saved);
-      document.getElementById("forecastDetails").innerHTML = `
-        <p><strong></strong>${forecast.city}<strong></strong> ${forecast.state}<strong></strong> ${Math.round(forecast.temperature)}&deg;F</p>
-      `;
-    } else {
-      document.getElementById("forecastDetails").innerHTML = "<p>No saved forecast found.</p>";
-    }
-  });
-</script>
 <footer>
   <center>
   <p>A weather app with only

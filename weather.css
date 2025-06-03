@@ -229,15 +229,18 @@ caption {
   text-align: center;
 }
 .btn2 {
-  -webkit-border-radius: 2;
-  -moz-border-radius: 2;
-  border-radius: 2px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 12px;
-  background: rgb(42, 75, 106);
-  padding: 8px 8px 8px 8px;
-  text-decoration: none;
+  box-shadow: transparent;
+  background: transparent;
+  border: 1px solid #687cf1;
+  border-radius: 50px;
+  backdrop-filter: blur(20px);
+  /* text-shadow: 4px 4px 4px #687cf1; */
+  font-weight: bolder;
+  color: #66d7fa;
+  font-size:large;
+      background:aliceblue;
+      padding: 10px 10px 10px 10px;
+ margin-top: 10px;
 }
 
 .btn2:hover {
@@ -338,4 +341,18 @@ header em {
   right: 0;
 
   margin: auto;
+}
+
+.weather-table{
+  align-items: center;
+  margin-top: 10px;
+  margin: auto;
+}
+.weather-table caption{
+    color:white;
+    font-weight: 300;
+    background: transparent;
+    border: 3px solid #687cf1;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
 }

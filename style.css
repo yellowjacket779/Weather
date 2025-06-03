@@ -12,7 +12,6 @@
 }
 
 .title {
-  position: absolute;
   top: 20px; /* distance from the top */
   left: 50%;
   text-shadow: 4px 4px 4px #687cf1;
@@ -137,9 +136,15 @@ body {
 }
 
 button {
-  text-shadow: 4px 4px 4px #687cf1;
-  font-weight: bold;
-  color: #04b8ef;
+  box-shadow: transparent;
+  background: transparent;
+  border: 1px solid #687cf1;
+  border-radius: 50px;
+  backdrop-filter: blur(20px);
+  /* text-shadow: 4px 4px 4px #687cf1; */
+  font-weight: bolder;
+  color: #66d7fa;
+  font-size: large;
 }
 footer {
   font-weight: bold;
@@ -187,5 +192,17 @@ footer {
   backdrop-filter: blur(10px);
 }
 
-
-
+.btn2 {
+  box-shadow: transparent;
+  background: transparent;
+  border: 1px solid #687cf1;
+  border-radius: 50px;
+  backdrop-filter: blur(20px);
+  /* text-shadow: 4px 4px 4px #687cf1; */
+  font-weight: bolder;
+  color: #66d7fa;
+  font-size: large;
+  background: aliceblue;
+  padding: 10px 10px 10px 10px;
+  margin-top: 10px;
+}

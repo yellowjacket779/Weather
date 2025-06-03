@@ -1,132 +1,151 @@
-const socket = new WebSocket("ws://localhost:6001");
-
+const socket = new WebSocket("ws://localhost:6023");
 window.addEventListener("load", runClient);
 // Called when city input values change
-let messageCount = 0;
-let cityandstate = 2;
+let message_amount = 0;
+let current_amount = 0;
+const forecasts = [];
+let cityNames = [];
+let imageid = 0;
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function runClient() {
-  console.log("Server is connecting");
-
+  current_amount = 0;
+  message_count = 0;
   if (socket.readyState === WebSocket.OPEN) {
-    socket.send("request for city");
+    await socket.send("request for city");
+  } else {
+    socket.onopen = () => {
+      socket.send("request for city");
+    };
   }
+}
 
-  // Listen for messages from the server
-  socket.onmessage = (event) => {
-    messageCount;
-    try {
-      const data = event.data;
+// Listen for messages from the server
+socket.onmessage = (event) => {
+  try {
+    if (!isNaN(event.data)) {
+      message_amount = parseInt(event.data, 10);
+      console.log("Expected forecast count:", message_amount);
+      numbermessage = 0;
+    } else {
+      console.log(event);
 
-      //   const cityInfo = data.split(",");
-      console.log(data);
-      const msg = JSON.parse(event.data);
-      let longitude = msg.longitude.toString();
-      let cityid = "city1";
-      displayForecast(cityid, msg.daily);
-      console.log(longitude);
-    } catch (error) {
-      console.error("Error parsing JSON:", error);
+      const data = JSON.parse(event.data);
+      if (data[0].hasOwnProperty("city")) {
+        cityNames = data;
+      } else {
+        //TODO: display multiple cities got it to work with one city
+        const forecast = data;
+        console.log(`Received forecast ${current_amount + 1}:`, forecast);
+
+        forecast.forEach((msg, index) => {
+          const cityid = `city${index + 1}`;
+          renderweather(msg, cityNames[index]);
+          console.log(`Longitude for ${cityid}: ${msg.longitude}`);
+        });
     }
-  };
+  }
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
+  }
 }
 
 async function themain() {
   runClient();
 }
 
-function displayForecast(cityId, forecastList) {
-  showElement("results-" + cityId);
 
-  // Get 5 day forecast map
-  const forecastMap = getSummaryForecast(forecastList);
-  showElement("forecast"); // unhide the section too
-  // Put forecast into the city's table
-  let day = 1;
-  for (const date in forecastMap) {
-    // Only process the first 5 days
-    if (day <= 5) {
-      const dayForecast = forecastMap[date];
-      showMessage(`${cityId}-day${day}-name`, getDayName(dayForecast.timeDate));
-      showMessage(
-        `${cityId}-day${day}-high`,
-        Math.round(dayForecast.highTemp) + "&deg;"
-      );
-      showMessage(
-        `${cityId}-day${day}-low`,
-        Math.round(dayForecast.lowTemp) + "&deg;"
-      );
-      showImage(`${cityId}-day${day}-image`, dayForecast.weatherCode);
-      showMessage(`${cityId}-day${day}-precip`, dayForecast.precip + "%");
-    }
-    day++;
+function renderweather(forecasts, cityNames) {
+  const container = document.getElementById("weatherCardsContainer");
+  // Loop through multiple forecasts if needed
+    const card = displayweather(forecasts, cityNames); // Pass corresponding city info
+    container.appendChild(card);
+    showImage(imageid, forecasts.weather_code);
+}
+
+
+function displayweather(forecast, cityNames){
+  const cityId = `city${Math.floor(Math.random() * 1000)}`;
+  const container = document.createElement("div");
+  container.className = "container";
+  container.setAttribute("id", `results-${cityId}`);
+
+
+  const content = document.createElement("div");
+  content.className = "content";
+
+  // Condition
+  const icon = document.createElement("img");
+  icon.className = "icon";
+  icon.setAttribute("id", `image-${cityId}`);
+  imageid =`image-${cityId}`;
+
+  // Temperature
+  const temp = document.createElement("h1");
+  temp.className = "Temp";
+  temp.innerHTML = `${forecast.current_temperature_2m} <span id="F">&#8457;</span>`;
+
+  // Time
+  const time = document.createElement("h1");
+  time.className = "Time";
+  const timeString = new Date().toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+        timeZone: forecast.time,
+      });
+  time.textContent = timeString;
+
+  // Location
+  const location = document.createElement("h1");
+  location.className = "Location";
+  location.innerHTML = firstletter(cityNames.city) + ", " + firstletter(cityNames.state);
+
+  const uvIndex = document.createElement("p");
+  uvIndex.className = "UV";
+  uvIndex.textContent = `UV ${forecast.uv_index ?? "N/A"}`;
+
+  // Air Quality
+  const airQuality = document.createElement("p");
+  airQuality.className = "AirQuality";
+  airQuality.textContent = `Air Quality: ${forecast.air_quality ?? "N/A"}`;
+  airQuality.style.color = getcolorforairquality(forecast.air_quality);
+  // Append to content
+  content.appendChild(icon);
+  content.appendChild(temp);
+  content.appendChild(time);
+  content.appendChild(location);
+  content.appendChild(uvIndex);
+  content.appendChild(airQuality);
+
+  // Append content to container
+  container.appendChild(content);
+
+  return container;
+}
+
+function getcolorforairquality(airQuality){
+  if(0<= airQuality && airQuality <=50){
+    return "#00e400";
   }
-}
-
-// Return a map of objects with high, low, weather properties
-function getSummaryForecast(forecastList) {
-  // Map for storing high, low, weather
-  let forecastArray = new Array();
-
-  // Determine high and low for each day
-  let highTemps = forecastList.temperature_2m_max;
-  console.log("Highs : ", highTemps);
-  let lowTemps = forecastList.temperature_2m_min;
-  console.log("Lows : ", lowTemps);
-  let weatherCode = forecastList.weather_code;
-  console.log("Codes : ", weatherCode);
-  let timeDate = forecastList.time;
-
-
-
-
-
-
-
-
-  
-  console.log("Dates : ", timeDate);
-  let precip = forecastList.precipitation_probability_max;
-  console.log("Dates : ", precip);
-
-  for (let i = 0; i < 7; i++) {
-    let forecast = {};
-    forecast.highTemp = highTemps[i];
-    forecast.lowTemp = lowTemps[i];
-    forecast.weatherCode = weatherCode[i];
-    forecast.timeDate = timeDate[i];
-    forecast.precip = precip[i];
-    console.log("forecast : ", i, " index ", forecast);
-    forecastArray.push(forecast);
-    console.log(" array ", forecastArray);
+    if(51<= airQuality && airQuality <=100){
+      return "#ffff00";
   }
-
-  forecastArray.forEach((res) => console.log(res));
-
-  return forecastArray;
-}
-
-// Convert date string into Mon, Tue, etc.
-function getDayName(dateStr) {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString("en-US", {
-    weekday: "short",
-    timeZone: "UTC",
-  });
-}
-
-// Show the element
-function showElement(elementId) {
-  document.getElementById(elementId).classList.remove("hidden");
-}
-
-// Hide the element
-function hideElement(elementId) {
-  document.getElementById(elementId).classList.add("hidden");
-}
-
-// Display the message in the element
-function showMessage(elementId, message) {
-  document.getElementById(elementId).innerHTML = message;
+    if(101<= airQuality && airQuality <=150){
+      return "#ff7e00";
+  }
+    if(151<= airQuality && airQuality <=200){
+      return "#ff0000";
+  }
+  if(201<= airQuality && airQuality <=300){
+    return "#8f3f97";
+  }
+    if(301<= airQuality){
+      return "#7e0023";
+  }
 }
 
 // Show the weather image that matches the weatherType
@@ -188,11 +207,15 @@ function showImage(elementId, weatherCode) {
     case 97:
       weatherType = "Thunder";
       break;
-      Default: weatherType = "Unknown";
   }
 
   const imgUrl = "images/";
   const img = document.getElementById(elementId);
   img.src = imgUrl + weatherImages[weatherType];
   img.alt = weatherType;
+}
+
+function firstletter(str) {
+  let newstring = str.toLowerCase();
+  return newstring.charAt(0).toUpperCase() + newstring.slice(1);
 }

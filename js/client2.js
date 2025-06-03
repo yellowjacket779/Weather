@@ -5,6 +5,7 @@ window.addEventListener("load", runClient);
 let message_amount = 0;
 let current_amount = 0;
 const forecasts = [];
+let cityNames = [];
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -33,16 +34,19 @@ socket.onmessage = (event) => {
       console.log(event);
 
       const data = JSON.parse(event.data);
+      if (data[0].hasOwnProperty("city")) {
+        cityNames = data;
+      } else {
+        //TODO: display multiple cities got it to work with one city
+        const forecast = data;
+        console.log(`Received forecast ${current_amount + 1}:`, forecast);
 
-      //TODO: display multiple cities got it to work with one city
-      const forecast = data;
-      console.log(`Received forecast ${current_amount + 1}:`, forecast);
-
-      forecast.forEach((msg, index) => {
-        const cityid = `city${index + 1}`;
-        createAndDisplayForecastTable(msg.daily);
-        console.log(`Longitude for ${cityid}: ${msg.longitude}`);
-      });
+        forecast.forEach((msg, index) => {
+          const cityid = `city${index + 1}`;
+          createAndDisplayForecastTable(msg.daily, cityNames[index]);
+          console.log(`Longitude for ${cityid}: ${msg.longitude}`);
+        });
+      }
     }
   } catch (error) {
     console.error("Error parsing JSON:", error);
@@ -52,8 +56,12 @@ socket.onmessage = (event) => {
 async function themain() {
   runClient();
 }
+function firstletter(str) {
+  let newstring = str.toLowerCase();
+  return newstring.charAt(0).toUpperCase() + newstring.slice(1);
+}
 
-function createAndDisplayForecastTable(forecastList) {
+function createAndDisplayForecastTable(forecastList, info_of_city) {
   // Step 1: Generate a random city ID
   const cityId = `city${Math.floor(Math.random() * 1000)}`;
 
@@ -64,7 +72,8 @@ function createAndDisplayForecastTable(forecastList) {
 
   const caption = document.createElement("caption");
   caption.setAttribute("id", `${cityId}-name`);
-  caption.innerText = "Forecast"; // You can replace this dynamically later
+  caption.innerText =
+    firstletter(info_of_city.city) + ", " + firstletter(info_of_city.state); 
   table.appendChild(caption);
 
   // Helper to create a row

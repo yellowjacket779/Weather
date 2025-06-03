@@ -1,11 +1,10 @@
 const WebSocket = require("ws");
 const zmq = require("zeromq");
 const fs = require("fs").promises; // This is crucial!
-const path = require("path"); // Helpful for constructing file paths reliably
 
 // Create WebSocket server (for browser)
-const wss = new WebSocket.Server({ port: 6001 }, () => {
-  console.log("WebSocket server is listening on ws://localhost:6000");
+const wss = new WebSocket.Server({ port: 6023 }, () => {
+  console.log("WebSocket server is listening on ws://localhost:6023");
 });
 let read = 0;
 // Create ZeroMQ REQ socket (to talk to backend)
@@ -17,7 +16,7 @@ function sleep(ms) {
 }
 
 const zmqSock2 = new zmq.Request();
-zmqSock2.connect("tcp://localhost:6002");
+zmqSock2.connect("tcp://localhost:5023");
 
 let reply2 = [];
 
@@ -31,7 +30,7 @@ async function getlocation(data) {
       // Send the request (the current JSON object)
       await zmqSock1.send(zipmessage);
       console.log("waiting");
-      await sleep(2000);
+  
       console.log("done waiting");
 
       // Wait for the reply. The REQ socket automatically waits for one reply for each request.
@@ -84,10 +83,8 @@ wss.on("connection", (ws) => {
       console.log(msg);
 
       console.log("\nProcessing data in main function:");
-      await sleep(500);
       const msg2 = await michealservice("C:/Users/jackb/OneDrive/Coding_projects/cs361a5/Weather/output.json"); // Await the Promise returned by testing() 
       // if the function above doesnt work change to output.json
-      await sleep(500);
       const jsonString = await fs.readFile("C:/Users/jackb/OneDrive/Coding_projects/cs361a5/Weather/output.json", "utf8");
       const data = JSON.parse(jsonString);
       citynames =JSON.stringify(data);
@@ -100,9 +97,11 @@ wss.on("connection", (ws) => {
       await zmqSock2.send(response);
       console.log("Sent to ZMQ:", response);
       ws.send(msg2.length);
-      
+      let i = 0;
+
+      console.log(i + " " + msg2.length);
       reply2 = await zmqSock2.receive();
-      console.log(reply2);
+      console.log(JSON.parse(reply2));
 
       console.log("Received from ZMQ:", reply2.toString());
       // Send result back to browser
