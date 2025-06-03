@@ -1,80 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="weather.css">
+  <link rel="stylesheet" href="test.css">
+  <script src="js/getfile.js" defer></script>
 </head>
 
 <!-- The video -->
 <video autoplay muted loop id="background-video">
   <source src="clouds.mov" type="video/mp4">
 </video>
+
 <body>
   <label class="title" for="title">
-  <center>
-  <h1>Light Weather</h1>
-  <label class ="login">
-    <button id="login">Login</button>
-    <script>
-      document.getElementById('login').onclick = function() {
-          window.location.href = "login.html";
-      }
-    </script>
-  </label>
-  <label class ="edit_temps">
-    <button id="edit_temps">Edit temps</button>
-      <script>
-        document.getElementById('edit_temps').onclick = function() {
+    <center>
+      <h1>Light Weather</h1>
+      <label class="login">
+        <button id="login">Login</button>
+        <script>
+          document.getElementById('login').onclick = function () {
+            window.location.href = "login.html";
+          }
+        </script>
+      </label>
+      <label class="edit_temps">
+        <button id="edit_temps">Edit temps</button>
+        <script>
+          document.getElementById('edit_temps').onclick = function () {
             window.location.href = "add.html";
-        }
-      </script>
+          }
+        </script>
+      </label>
+    </center>
   </label>
-  </center>
-</label>
-<main>
   <main>
-    <label class ="hamburger-menu">
-      <input type="checkbox">
-    </label>
-    </nav>
-    <aside class = "sidebar">
-    <nav> 
-      <!-- TODO: show active tabs and write the admin contact page. Also look into guide and weather conditions -->
-      <div><a href="weatherapp.html"> Home</a></div>
-      <div><a href="about.html"> About</a></div>
-      <div><a href="help.html">Help</a></div>
-</aside>
+    <main>
+      <label class="hamburger-menu">
+        <input type="checkbox">
+      </label>
+      </nav>
+      <aside class="sidebar">
+        <nav>
+          <!-- TODO: show active tabs and write the admin contact page. Also look into guide and weather conditions -->
+          <div><a href="weatherapp.html"> Home</a></div>
+          <div><a href="about.html"> About</a></div>
+          <div><a href="help.html">Help</a></div>
+      </aside>
 
 
 
-</main>
-<center>
-<div class="editing_temps">
-    <button id="addbutton">add</button>
-      <script>
-        document.getElementById('addbutton').onclick = function() {
+    </main>
+    <center>
+      <div class="editing_temps">
+        <button id="addbutton">add</button>
+        <script>
+          document.getElementById('addbutton').onclick = function () {
             window.location.href = "add.html";
-        }
-      </script>
+          }
+        </script>
 
-    <button id="remove">Remove</button>
-      <script>
-        document.getElementById('remove').onclick = function() {
+        <button id="remove">Remove</button>
+        <script>
+          document.getElementById('remove').onclick = function () {
             window.location.href = "remove.html";
-        }
-      </script>
-      </center>
-<footer>
-  <center>
-  <p>A weather app with only
-      the essentials and none
-      of the annoying stuff
-  </p>
-  <p>Admin contact information:bennjack@oregonstate.edu</p>
-</footer>
+          }
+        </script>
+    </center>
+    <main>
+      <div id="city_buttons_container"></div>
+      <div class="button-container">
+        <button class="btn40" id="Remove_selected_cities">Remove selected cities</button>
+      </div>
+
+    </main>
+
+    <footer>
+      <center>
+        <p>A weather app with only
+          the essentials and none
+          of the annoying stuff
+        </p>
+        <p>Admin contact information:bennjack@oregonstate.edu</p>
+    </footer>
 </body>
 
 </html>
-

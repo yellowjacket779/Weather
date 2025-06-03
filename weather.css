@@ -26,10 +26,7 @@ header {
   margin-bottom: 0px;
   padding: 5px 5px 5px 20px;
 }
-header > h1 {
-  color: #04b8ef;
-  font-size: 30px;
-}
+
 header > img {
   float: left;
   margin: 0 0 10px 10px;

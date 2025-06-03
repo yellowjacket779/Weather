@@ -2,8 +2,7 @@ const WebSocket = require("ws");
 const zmq = require("zeromq");
 const fs = require("fs");
 
-
-let outfile = 'output.json';
+let outfile = "output.json";
 // Create WebSocket server (for browser)
 const wss = new WebSocket.Server({ port: 5556 }, () => {
   console.log("WebSocket server is listening on ws://localhost:5556");
@@ -61,14 +60,10 @@ wss.on("connection", (ws) => {
   });
 });
 
-
 function send_data(cityname, statename) {
-
-
   let newcityobject = { city: cityname, state: statename };
 
-
-fs.readFile(outfile, "utf8", (err, data) => {
+  fs.readFile(outfile, "utf8", (err, data) => {
     let citydata = [];
 
     if (!err && data) {
@@ -80,16 +75,13 @@ fs.readFile(outfile, "utf8", (err, data) => {
     }
 
     citydata.push(newcityobject);
-    
 
     fs.writeFile(outfile, JSON.stringify(citydata, null, 2), (writeErr) => {
       if (writeErr) {
         console.error("Error writing to reviews.json:", writeErr);
       }
 
-    console.log("got it to work\n")
+      console.log("got it to work\n");
     });
   });
-
-
 }

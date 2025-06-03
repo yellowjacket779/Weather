@@ -2,42 +2,108 @@ const socket = new WebSocket("ws://localhost:6001");
 
 window.addEventListener("load", runClient);
 // Called when city input values change
-let messageCount = 0;
-let cityandstate = 2;
-async function runClient() {
-  console.log("Server is connecting");
+let message_amount = 0;
+let current_amount = 0;
+const forecasts = [];
 
-  if (socket.readyState === WebSocket.OPEN) {
-    socket.send("request for city");
-  }
-
-  // Listen for messages from the server
-  socket.onmessage = (event) => {
-    messageCount;
-    try {
-      const data = event.data;
-
-      console.log(data);
-      const msg = JSON.parse(event.data);
-      let longitude = msg.longitude.toString();
-      let cityid = "city1";
-      displayForecast(cityid, msg.daily);
-      console.log(longitude);
-    } catch (error) {
-      console.error("Error parsing JSON:", error);
-    }
-    // else{
-    //     cityandstate =  event.data.toString();
-    //     let [city, state] = cityandstate.split(",")
-    //     cityandstate = city +"  " + state;
-    //        showMessage("city1" + "-name", cityandstate);
-
-    // }
-  };
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+async function runClient() {
+  current_amount = 0;
+  message_count = 0;
+  if (socket.readyState === WebSocket.OPEN) {
+    await socket.send("request for city");
+  } else {
+    socket.onopen = () => {
+      socket.send("request for city");
+    };
+  }
+}
+
+// Listen for messages from the server
+socket.onmessage = (event) => {
+  try {
+    if (!isNaN(event.data)) {
+      message_amount = parseInt(event.data, 10);
+      console.log("Expected forecast count:", message_amount);
+      numbermessage = 0;
+    } else {
+      console.log(event);
+
+      const data = JSON.parse(event.data);
+
+      //TODO: display multiple cities got it to work with one city
+      const forecast = data;
+      console.log(`Received forecast ${current_amount + 1}:`, forecast);
+
+      forecast.forEach((msg, index) => {
+        const cityid = `city${index + 1}`;
+        createAndDisplayForecastTable(msg.daily);
+        console.log(`Longitude for ${cityid}: ${msg.longitude}`);
+      });
+    }
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
+  }
+};
 
 async function themain() {
   runClient();
+}
+
+function createAndDisplayForecastTable(forecastList) {
+  // Step 1: Generate a random city ID
+  const cityId = `city${Math.floor(Math.random() * 1000)}`;
+
+  // Step 2: Create the table dynamically
+  const table = document.createElement("table");
+  table.setAttribute("id", `results-${cityId}`);
+  table.classList.add("weather-table"); // optional: add a class for styling
+
+  const caption = document.createElement("caption");
+  caption.setAttribute("id", `${cityId}-name`);
+  caption.innerText = "Forecast"; // You can replace this dynamically later
+  table.appendChild(caption);
+
+  // Helper to create a row
+  function createRow(label, suffix, isImage = false) {
+    const tr = document.createElement("tr");
+
+    const th = document.createElement("th");
+    th.textContent = label;
+    tr.appendChild(th);
+
+    for (let i = 1; i <= 5; i++) {
+      const td = document.createElement("td");
+
+      if (isImage) {
+        const img = document.createElement("img");
+        img.setAttribute("id", `${cityId}-day${i}-${suffix}`);
+        td.appendChild(img);
+      } else {
+        td.setAttribute("id", `${cityId}-day${i}-${suffix}`);
+      }
+
+      tr.appendChild(td);
+    }
+
+    return tr;
+  }
+
+  // Add each row
+  table.appendChild(createRow("Day", "name"));
+  table.appendChild(createRow("High", "high"));
+  table.appendChild(createRow("Low", "low"));
+  table.appendChild(createRow("Rain", "precip"));
+  table.appendChild(createRow("Outlook", "image", true));
+
+  // Step 3: Append the table to the DOM
+  document.body.appendChild(table);
+
+  // Step 4: Call your existing display function
+  displayForecast(cityId, forecastList);
 }
 
 function displayForecast(cityId, forecastList) {
